@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from 'react';
 import { 
   Trophy, 
@@ -14,9 +15,10 @@ import {
 
 export default function LandingPage() {
   const [email, setEmail] = useState('');
-  const [status, setStatus] = useState('idle'); // idle, loading, success
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle');
 
-  const handleJoin = (e) => {
+  // Added React.FormEvent type to fix the TypeScript build error
+  const handleJoin = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
     setStatus('loading');
@@ -54,7 +56,7 @@ export default function LandingPage() {
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-medium mb-8">
             <Zap className="w-3 h-3 fill-current" />
-            <span>Public Beta Launching Q1 2026</span>
+            <span>Public Beta Launching Q1 2025</span>
           </div>
           
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent">
@@ -103,11 +105,10 @@ export default function LandingPage() {
         </div>
       </div>
 
-      {/* --- MOCKUP SHOWCASE (CSS ONLY) --- */}
+      {/* --- MOCKUP SHOWCASE --- */}
       <div className="max-w-6xl mx-auto px-6 mb-32">
         <div className="relative rounded-xl bg-zinc-900 border border-white/10 p-2 shadow-2xl shadow-blue-900/20 overflow-hidden group">
           
-          {/* Mockup Browser Header */}
           <div className="h-8 bg-zinc-950 border-b border-white/5 flex items-center px-4 gap-2">
             <div className="flex gap-1.5">
               <div className="w-3 h-3 rounded-full bg-red-500/20" />
@@ -119,9 +120,7 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* Mockup Content (Mini version of the app) */}
           <div className="flex h-[500px] bg-black text-xs md:text-sm">
-            {/* Sidebar Mock */}
             <div className="w-48 border-r border-white/10 p-3 hidden md:block">
               <div className="flex gap-2 mb-4">
                 <div className="h-6 w-12 bg-white/10 rounded-full" />
@@ -140,7 +139,6 @@ export default function LandingPage() {
               ))}
             </div>
 
-            {/* Main Mock */}
             <div className="flex-1 p-6 relative">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none" />
               <div className="flex justify-between items-center mb-6">
@@ -151,7 +149,6 @@ export default function LandingPage() {
                 <div className="h-8 w-8 bg-zinc-800 rounded-full" />
               </div>
 
-              {/* Chart Mock */}
               <div className="h-64 w-full bg-zinc-900/50 border border-white/5 rounded-lg mb-6 relative overflow-hidden">
                 <svg className="absolute inset-0 w-full h-full text-blue-500/20" preserveAspectRatio="none">
                   <path d="M0,100 C150,100 200,50 400,60 C600,70 800,20 1000,10 V200 H0 Z" fill="currentColor" />
@@ -169,7 +166,6 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* Feed Mock */}
             <div className="w-64 border-l border-white/10 p-3 hidden lg:block bg-zinc-950">
                <div className="flex items-center gap-2 mb-4 text-zinc-500">
                  <Twitter className="w-3 h-3" />
